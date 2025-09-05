@@ -5,6 +5,7 @@ public class PlayerController : MonoBehaviour
 {
     [SerializeField] private float moveSpeed = 7f;
     [SerializeField] private float gravity = -9.81f;
+    [SerializeField] private float pushForceFactor = 1f;
 
     private CharacterController controller;
     private InputManager inputManager;
@@ -31,7 +32,19 @@ public class PlayerController : MonoBehaviour
 
         velocity.y += gravity * Time.deltaTime;
         controller.Move(velocity * Time.deltaTime);
+    }
 
+    void OnControllerColliderHit(ControllerColliderHit hit)
+    {
+        Rigidbody rb = hit.collider.attachedRigidbody;
 
+        // Only push rigidbodies, and don’t affect kinematic ones
+        if (rb != null && !rb.isKinematic)
+        {
+            Vector3 pushDir = new Vector3(hit.moveDirection.x, 0, hit.moveDirection.z);
+            float pushForce = pushForceFactor * rb.mass;
+
+            rb.AddForce(pushDir * pushForce, ForceMode.Impulse);
+        }
     }
 }
