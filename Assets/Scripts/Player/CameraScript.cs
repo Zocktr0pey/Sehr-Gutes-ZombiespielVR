@@ -2,18 +2,17 @@ using UnityEngine;
 
 public class CameraScript : MonoBehaviour
 {
-    [SerializeField] private float sensitivity = 1f;
-    [SerializeField] private GameObject cameraHolder;
+    [SerializeField] 
+    private float sensitivity = 1f;
 
-    private CharacterController controller;
+    private GameObject cameraHolder;
     private InputManager inputManager;
-    private Transform cameraHolderTransform;
     private float maxAngle = 85f; // muss > 0 und < 90 sein
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
-        controller = GetComponent<CharacterController>();
+        cameraHolder = transform.Find("CameraHolder")?.gameObject;
         inputManager = InputManager.Instance;
     }
 

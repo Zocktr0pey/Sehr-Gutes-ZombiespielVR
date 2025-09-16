@@ -2310,7 +2310,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::CameraScript
   sensitivity: 0.3
-  cameraHolder: {fileID: 1969498740}
 --- !u!1 &2085777384
 GameObject:
   m_ObjectHideFlags: 0
