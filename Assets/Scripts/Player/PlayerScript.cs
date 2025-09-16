@@ -22,13 +22,12 @@ public class PlayerController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        float rotation = transform.eulerAngles.y;
         moveInput = inputManager.GetPlayerMovement();
         Vector3 move = new Vector3(moveInput.x, 0, moveInput.y);
 
         move = transform.TransformDirection(move);
 
-        controller.Move(move * moveSpeed * Time.deltaTime);
+        controller.Move(moveSpeed * Time.deltaTime * move);
 
         velocity.y += gravity * Time.deltaTime;
         controller.Move(velocity * Time.deltaTime);
