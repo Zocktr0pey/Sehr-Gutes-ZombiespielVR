@@ -3,7 +3,9 @@ using UnityEngine;
 public class InputManager : MonoBehaviour
 {
     private static InputManager instance;
+    private PlayerControls playerControls;
 
+    // Erlaubt anderen Klassen auf den Manager zuzugreifen
     public static InputManager Instance
     {
         get
@@ -12,8 +14,7 @@ public class InputManager : MonoBehaviour
         }
     }
 
-    private PlayerControls playerControls;
-
+    // Sorgt dafür das immer nur eine Instanz dieses Managers existiert
     void Awake()
     {
         if (instance != null && instance != this)
@@ -45,5 +46,15 @@ public class InputManager : MonoBehaviour
     public Vector2 GetMouseDelta()
     {
         return playerControls.Player.Look.ReadValue<Vector2>();
+    }
+
+    public bool GetContinuousFire()
+    {
+        return playerControls.Player.Attack.IsPressed();
+    }
+
+    public bool GetSingleFire()
+    {
+        return playerControls.Player.Attack.WasPerformedThisFrame();
     }
 }

@@ -25,7 +25,7 @@ public class CameraScript : MonoBehaviour
 
         // verhindert das sich die Kamera überschlägt
         float newAngle = cameraHolder.transform.eulerAngles.x - delta.y;
-        Debug.Log(newAngle);
+
         if (newAngle > maxAngle && newAngle < 180)
         {
             cameraHolder.transform.eulerAngles = new Vector3(maxAngle, cameraHolder.transform.eulerAngles.y, cameraHolder.transform.eulerAngles.z);
