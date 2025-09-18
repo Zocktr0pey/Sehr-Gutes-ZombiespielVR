@@ -17,10 +17,12 @@ public class ZombieScript : MonoBehaviour
     [SerializeField]
     private float attackCooldown = 2f;
     private float timeSinceLastAttack;
-    private bool onCoolDown;
+    private bool onCooldown;
 
     private GameObject player;
     private Rigidbody rb;
+    Vector3 positionDiff;
+    Vector3 playerDirection;
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
@@ -28,35 +30,61 @@ public class ZombieScript : MonoBehaviour
         currentHealth = maxHealth;
         player = GameObject.Find("Player");
         rb = GetComponent<Rigidbody>();
-        onCoolDown = false;
+        onCooldown = false;
     }
 
     // Update is called once per frame
     void Update()
     {
-        if (onCoolDown)
+        ReduceCooldown();
+
+        positionDiff = (player.transform.position - transform.position);
+
+        if (positionDiff.magnitude <= attackRange && !onCooldown)
+        {
+            Attack();
+        }
+
+        Rotate();
+
+        if (positionDiff.magnitude > attackRange) // Zombie bewegt sich nur wenn der Spieler auﬂerhalb der damageRange ist
+        {
+            Move();
+        }
+    }
+
+    private void Attack()
+    {
+        Debug.Log("You just got touched by a Zombie son~");
+        // damage player
+        // ...
+        onCooldown = true;
+    }
+
+    private void Move()
+    {
+        // Forw‰rtsbewegung
+        Vector3 move = transform.forward * moveSpeed * Time.deltaTime;
+        rb.MovePosition(rb.position + move);
+    }
+
+    private void ReduceCooldown()
+    {
+        if (onCooldown)
         {
             timeSinceLastAttack += Time.deltaTime;
             if (timeSinceLastAttack > attackCooldown)
             {
-                onCoolDown = false;
+                onCooldown = false;
                 timeSinceLastAttack = 0;
             }
         }
+    }
 
-        Vector3 positionDiff = (player.transform.position - transform.position);
-
-        if (positionDiff.magnitude <= attackRange && !onCoolDown)
-        {
-
-            Debug.Log("You just got touched by a Zombie son~");
-            // damage player
-            // ...
-            onCoolDown = true;
-        }
-
+    private void Rotate()
+    {
         // Richtungsvektor zum Spieler auﬂer y damit er sich nur um die Y - Achse dreht
-        Vector3 playerDirection = positionDiff;
+        playerDirection = positionDiff;
         playerDirection.y = 0;
         playerDirection = playerDirection.normalized;
 
@@ -67,15 +95,7 @@ public class ZombieScript : MonoBehaviour
         transform.rotation = Quaternion.Slerp(
             transform.rotation,                     // Aktuelle rotation
             lookRotation,                           // Zielrotation
-            Time.deltaTime * rotationSpeed          // drehgeschwindigkeit
+            Time.deltaTime * rotationSpeed          // Drehgeschwindigkeit
         );
-
-        if (positionDiff.magnitude > attackRange) // Zombie bewegt sich nur wenn der Spieler auﬂerhalb der damageRange ist
-        {
-            // Forw‰rtsbewegung
-            Vector3 move = transform.forward * moveSpeed * Time.deltaTime;
-            rb.MovePosition(rb.position + move);
-        }
-
     }
 }
