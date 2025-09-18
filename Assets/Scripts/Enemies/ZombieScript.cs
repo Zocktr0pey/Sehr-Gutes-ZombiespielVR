@@ -10,6 +10,14 @@ public class ZombieScript : MonoBehaviour
     private float moveSpeed = 3f;
     [SerializeField]
     private float rotationSpeed = 3f;
+    [SerializeField]
+    private float damage = 10f;
+    [SerializeField]
+    private float attackRange = 1.5f;
+    [SerializeField]
+    private float attackCooldown = 2f;
+    private float timeSinceLastAttack;
+    private bool onCoolDown;
 
     private GameObject player;
     private Rigidbody rb;
@@ -20,34 +28,54 @@ public class ZombieScript : MonoBehaviour
         currentHealth = maxHealth;
         player = GameObject.Find("Player");
         rb = GetComponent<Rigidbody>();
+        onCoolDown = false;
     }
 
     // Update is called once per frame
     void Update()
     {
-        // Zombie rotiert zum Spieler
-        // *Redacted* simpler aber keine Smoothness
-        // Vector3 playerPos = player.transform.position;
-        // Eigene y position damit der zombie nur entlang der Y achse rotiert
-        // transform.LookAt(new Vector3(playerPos.x, transform.position.y, playerPos.z));
+        if (onCoolDown)
+        {
+            timeSinceLastAttack += Time.deltaTime;
+            if (timeSinceLastAttack > attackCooldown)
+            {
+                onCoolDown = false;
+                timeSinceLastAttack = 0;
+            }
+        }
 
-        // Richtungsvektor zum Spieler, auﬂer y damit er sich nur um die Y-Achse dreht
-        Vector3 playerDirection = (player.transform.position - transform.position);
+        Vector3 positionDiff = (player.transform.position - transform.position);
+
+        if (positionDiff.magnitude <= attackRange && !onCoolDown)
+        {
+
+            Debug.Log("You just got touched by a Zombie son~");
+            // damage player
+            // ...
+            onCoolDown = true;
+        }
+
+        // Richtungsvektor zum Spieler auﬂer y damit er sich nur um die Y - Achse dreht
+        Vector3 playerDirection = positionDiff;
         playerDirection.y = 0;
         playerDirection = playerDirection.normalized;
 
         // Zielrotation
         Quaternion lookRotation = Quaternion.LookRotation(playerDirection);
 
-        // Smoother ¸bergang
+        // Smoothe Drehung
         transform.rotation = Quaternion.Slerp(
-            transform.rotation,                     // current rotation
-            lookRotation,                           // target rotation
-            Time.deltaTime * rotationSpeed          // rotation speed
+            transform.rotation,                     // Aktuelle rotation
+            lookRotation,                           // Zielrotation
+            Time.deltaTime * rotationSpeed          // drehgeschwindigkeit
         );
 
-        Vector3 move = transform.forward * moveSpeed * Time.deltaTime;
-        rb.MovePosition(rb.position + move);
+        if (positionDiff.magnitude > attackRange) // Zombie bewegt sich nur wenn der Spieler auﬂerhalb der damageRange ist
+        {
+            // Forw‰rtsbewegung
+            Vector3 move = transform.forward * moveSpeed * Time.deltaTime;
+            rb.MovePosition(rb.position + move);
+        }
 
     }
 }
