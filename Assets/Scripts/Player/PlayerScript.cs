@@ -47,15 +47,15 @@ public class PlayerController : MonoBehaviour
         }
     }
 
+    // andere Rigidbodys wegkicken
     void OnControllerColliderHit(ControllerColliderHit hit)
     {
         Rigidbody rb = hit.collider.attachedRigidbody;
 
-        // Only push rigidbodies, and don’t affect kinematic ones
         if (rb != null && !rb.isKinematic)
         {
             Vector3 pushDir = new Vector3(hit.moveDirection.x, 0, hit.moveDirection.z);
-            float pushForce = pushForceFactor * rb.mass;
+            float pushForce = pushForceFactor * 1/rb.mass;
 
             rb.AddForce(pushDir * pushForce, ForceMode.Impulse);
         }
