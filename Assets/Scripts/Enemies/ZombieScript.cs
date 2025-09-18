@@ -20,6 +20,7 @@ public class ZombieScript : MonoBehaviour
     private bool onCooldown;
 
     private GameObject player;
+    private PlayerScript playerScript;
     private Rigidbody rb;
     Vector3 positionDiff;
     Vector3 playerDirection;
@@ -29,6 +30,7 @@ public class ZombieScript : MonoBehaviour
     {
         currentHealth = maxHealth;
         player = GameObject.Find("Player");
+        playerScript = player.GetComponent<PlayerScript>();
         rb = GetComponent<Rigidbody>();
         onCooldown = false;
     }
@@ -56,8 +58,7 @@ public class ZombieScript : MonoBehaviour
     private void Attack()
     {
         Debug.Log("You just got touched by a Zombie son~");
-        // damage player
-        // ...
+        playerScript.TakeDamage(damage);
         onCooldown = true;
     }
 

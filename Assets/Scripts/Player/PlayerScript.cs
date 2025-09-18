@@ -1,8 +1,11 @@
+using UnityEditor.Build.Content;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
-public class PlayerController : MonoBehaviour
+public class PlayerScript : MonoBehaviour
 {
+    [SerializeField] private float maxHealth = 30f;
+    [SerializeField] private float currentHealth;
     [SerializeField] private float moveSpeed = 7f;
     [SerializeField] private float gravity = -9.81f;
     [SerializeField] private float pushForceFactor = 1f;
@@ -17,6 +20,9 @@ public class PlayerController : MonoBehaviour
     {
         controller = GetComponent<CharacterController>();
         inputManager = InputManager.Instance;
+
+        // Init stats
+        currentHealth = maxHealth;
     }
 
     // Update is called once per frame
@@ -40,7 +46,7 @@ public class PlayerController : MonoBehaviour
             // Hier Einzeschusswaffen.shoot()
         }
 
-        // Dauerfeuer
+        // Dauerfeuer (wird bei JEDEM Frame getriggert)
         if (inputManager.GetContinuousFire())
         {
             // Hier Dauerfeuerwaffen.shoot()
@@ -58,6 +64,20 @@ public class PlayerController : MonoBehaviour
             float pushForce = pushForceFactor * 1/rb.mass;
 
             rb.AddForce(pushDir * pushForce, ForceMode.Impulse);
+        }
+    }
+
+    // Spieler bekommt Schaden (durch Zombie in der Regel)
+    public void TakeDamage(float damage) 
+    { 
+        currentHealth -= damage;
+        //audioManager.PlayerDamage();
+
+        // Bestatter schaut drüber
+        if (currentHealth <= 0)
+        {
+            //audioManager.PlayerDeath()
+            //gameManager.GameOver();
         }
     }
 }
