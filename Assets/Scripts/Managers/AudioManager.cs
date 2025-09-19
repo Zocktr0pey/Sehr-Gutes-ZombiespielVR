@@ -1,4 +1,5 @@
 using UnityEngine;
+using UnityEngine.Rendering;
 
 public class AudioManager : MonoBehaviour
 {
@@ -32,10 +33,18 @@ public class AudioManager : MonoBehaviour
         {
             instance = this;
         }
+        
+    }
+
+    public void UpdateVolume(float newVolume)
+    {
+        sfxSource.volume = newVolume;
+        musicSource.volume = newVolume;
     }
 
     public void PlayerDamage()
     {
+        
         int len = playerDamageClips.Length;
         if (len > 0 )
         {
