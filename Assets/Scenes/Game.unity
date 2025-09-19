@@ -1647,7 +1647,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::AudioManager
   sfxSource: {fileID: 577492425}
-  musicSource: {fileID: 0}
+  musicSource: {fileID: 260867163}
   playerDamageClips:
   - {fileID: 8300000, guid: 3bf609c7221e817419766d8a17ab0b89, type: 3}
   - {fileID: 8300000, guid: 1170fb722b635fc4aa33c248fe09fbdf, type: 3}
