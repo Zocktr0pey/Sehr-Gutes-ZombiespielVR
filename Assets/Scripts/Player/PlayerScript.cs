@@ -12,6 +12,7 @@ public class PlayerScript : MonoBehaviour
 
     private CharacterController controller;
     private InputManager inputManager;
+    private AudioManager audioManager;
     private Vector2 moveInput;
     private Vector3 velocity;
 
@@ -20,6 +21,7 @@ public class PlayerScript : MonoBehaviour
     {
         controller = GetComponent<CharacterController>();
         inputManager = InputManager.Instance;
+        audioManager = AudioManager.Instance;
 
         // Init stats
         currentHealth = maxHealth;
@@ -71,7 +73,7 @@ public class PlayerScript : MonoBehaviour
     public void TakeDamage(float damage) 
     { 
         currentHealth -= damage;
-        //audioManager.PlayerDamage();
+        audioManager.PlayerDamage();
 
         // Bestatter schaut drüber
         if (currentHealth <= 0)

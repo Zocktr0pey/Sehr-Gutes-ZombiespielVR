@@ -57,7 +57,6 @@ public class ZombieScript : MonoBehaviour
 
     private void Attack()
     {
-        Debug.Log("You just got touched by a Zombie son~");
         playerScript.TakeDamage(damage);
         onCooldown = true;
     }
