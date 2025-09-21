@@ -1,7 +1,8 @@
+using Unity.Netcode;
 using Unity.VisualScripting;
 using UnityEngine;
 
-public class ZombieScript : MonoBehaviour
+public class ZombieScript : NetworkBehaviour
 {
     [SerializeField]
     private float maxHealth = 100f;
@@ -19,28 +20,48 @@ public class ZombieScript : MonoBehaviour
     private float timeSinceLastAttack;
     private bool onCooldown;
 
-    private GameObject player;
+    private GameObject[] players;
+    private GameObject nearestPlayer;
     private PlayerScript playerScript;
     private Rigidbody rb;
     Vector3 positionDiff;
     Vector3 playerDirection;
 
-    // Start is called once before the first execution of Update after the MonoBehaviour is created
-    void Start()
+    private NetworkShit networkShit;
+
+    private void Awake()
     {
+        networkShit = NetworkShit.Instance;
         currentHealth = maxHealth;
-        player = GameObject.Find("Player");
-        playerScript = player.GetComponent<PlayerScript>();
         rb = GetComponent<Rigidbody>();
         onCooldown = false;
     }
+
+    /*
+    public override void OnNetworkSpawn()
+    {
+        networkShit = NetworkShit.Instance;
+        currentHealth = maxHealth;
+        rb = GetComponent<Rigidbody>();
+        onCooldown = false;
+    }
+    */
 
     // Update is called once per frame
     void Update()
     {
         ReduceCooldown();
 
-        positionDiff = (player.transform.position - transform.position);
+        players = networkShit.GetPlayers();
+
+        nearestPlayer = GetNearestPlayer();
+
+        if (nearestPlayer == null )
+        {
+            return;
+        }
+
+        positionDiff = (nearestPlayer.transform.position - transform.position);
 
         if (positionDiff.magnitude <= attackRange && !onCooldown)
         {
@@ -55,9 +76,27 @@ public class ZombieScript : MonoBehaviour
         }
     }
 
+    private GameObject GetNearestPlayer()
+    {
+        GameObject nearestPlayer = null;
+        float shortestDistance = Mathf.Infinity;
+
+        foreach (GameObject player in networkShit.GetPlayers())
+        {
+            float distance = Vector3.Distance(transform.position, player.transform.position);
+            if (distance < shortestDistance)
+            {
+                shortestDistance = distance;
+                nearestPlayer = player;
+            }
+        }
+
+        return nearestPlayer;
+    }
+
     private void Attack()
     {
-        playerScript.TakeDamage(damage);
+        nearestPlayer.GetComponent<PlayerScript>().TakeDamage(damage);
         onCooldown = true;
     }
 

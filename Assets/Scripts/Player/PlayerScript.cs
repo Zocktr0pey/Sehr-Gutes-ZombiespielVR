@@ -1,35 +1,49 @@
+using Unity.Netcode;
 using UnityEditor.Build.Content;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
-public class PlayerScript : MonoBehaviour
+public class PlayerScript : NetworkBehaviour
 {
     [SerializeField] private float maxHealth = 30f;
     [SerializeField] private float currentHealth;
     [SerializeField] private float moveSpeed = 7f;
     [SerializeField] private float gravity = -9.81f;
     [SerializeField] private float pushForceFactor = 1f;
+    [SerializeField] private Camera cam;
 
     private CharacterController controller;
     private InputManager inputManager;
     private AudioManager audioManager;
+    private NetworkShit networkShit;
     private Vector2 moveInput;
     private Vector3 velocity;
 
-    // Start is called once before the first execution of Update after the MonoBehaviour is created
-    void Start()
+    public override void OnNetworkSpawn()
     {
         controller = GetComponent<CharacterController>();
         inputManager = InputManager.Instance;
         audioManager = AudioManager.Instance;
+        networkShit = NetworkShit.Instance;
+        networkShit.AddPlayer(this.gameObject);
 
         // Init stats
         currentHealth = maxHealth;
+
+        if (!IsOwner)
+        {
+            cam.enabled = false;
+        }
     }
 
     // Update is called once per frame
     void Update()
     {
+        if (!IsOwner)
+        {
+            return;
+        }
+
         moveInput = inputManager.GetPlayerMovement();
         Vector3 move = new Vector3(moveInput.x, 0, moveInput.y);
 
