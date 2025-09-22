@@ -57,4 +57,9 @@ public class InputManager : MonoBehaviour
     {
         return playerControls.Player.Attack.WasPerformedThisFrame();
     }
+
+    public bool GetReload()
+    {
+        return playerControls.Player.Reload.IsPressed();
+    }
 }

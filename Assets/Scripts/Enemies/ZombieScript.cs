@@ -4,7 +4,7 @@ using UnityEngine;
 public class ZombieScript : MonoBehaviour
 {
     [SerializeField]
-    private float maxHealth = 100f;
+    private float maxHealth;
     private float currentHealth;
     [SerializeField]
     private float moveSpeed = 3f;
@@ -22,22 +22,40 @@ public class ZombieScript : MonoBehaviour
     private GameObject player;
     private PlayerScript playerScript;
     private Rigidbody rb;
+    private Target targetSelf;
     Vector3 positionDiff;
     Vector3 playerDirection;
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
-        currentHealth = maxHealth;
+        targetSelf = GetComponent<Target>();
+        if (targetSelf == null)
+        {
+            Debug.LogError("Please Add Target script as a component and set the \"Takes Damage\" flag to true. Add the Audiomanager Gameobject and its ZombieDamage() Method. Thanks");
+        }
+        targetSelf.Init(false, true, maxHealth);
+
+        
         player = GameObject.Find("Player");
         playerScript = player.GetComponent<PlayerScript>();
         rb = GetComponent<Rigidbody>();
+
+        maxHealth = targetSelf.GetMaxHealth();
+
         onCooldown = false;
     }
 
     // Update is called once per frame
     void Update()
     {
+        // Health update and isAlive check
+        currentHealth = targetSelf.GetHealth();
+        if (currentHealth <= 0 )
+        {
+            Death();
+        }
+
         ReduceCooldown();
 
         positionDiff = (player.transform.position - transform.position);
@@ -97,5 +115,14 @@ public class ZombieScript : MonoBehaviour
             lookRotation,                           // Zielrotation
             Time.deltaTime * rotationSpeed          // Drehgeschwindigkeit
         );
+    }
+
+    private void Death()
+    {
+        // audioManager.ZombieDeath();
+        // TodesAnimation
+        // Geld oder Punkt für den Spieler
+        // Zombiecount--
+        Destroy(this.gameObject);
     }
 }

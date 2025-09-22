@@ -11,7 +11,8 @@ public class AudioManager : MonoBehaviour
 
     [Header("Sound Clips")]
     public AudioClip[] playerDamageClips;
-    public AudioClip[] shootClips;
+    public AudioClip[] zombieDamageClips;
+    public AudioClip[] shootPistolClips;
 
     // Erlaubt anderen Klassen auf den Manager zuzugreifen
     public static AudioManager Instance
@@ -44,11 +45,28 @@ public class AudioManager : MonoBehaviour
 
     public void PlayerDamage()
     {
-        
         int len = playerDamageClips.Length;
         if (len > 0 )
         {
            sfxSource.PlayOneShot(playerDamageClips[Random.Range( 0, len )]);
+        }
+    }
+
+    public void ZombieDamage()
+    {
+        int len = zombieDamageClips.Length;
+        if (len > 0)
+        {
+            sfxSource.PlayOneShot(zombieDamageClips[Random.Range(0, len)]);
+        }
+    }
+
+    public void ShootPistol()
+    {
+        int len = shootPistolClips.Length;
+        if (len > 0)
+        {
+            sfxSource.PlayOneShot(shootPistolClips[Random.Range(0, len)]);
         }
     }
 }
