@@ -5,6 +5,7 @@ public class EnemySpawnWave : ScriptableObject
 {
     public int amountOfEnemies;
     public GameObject enemyCommon;
-    //public GameObject enemyRare;
+    public GameObject enemyUncommon;
+    public GameObject enemyRare;
     public float spawnRate; // Zeit zwischen spawns
 }
