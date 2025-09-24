@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: 5afcd3d9f956d5842afe09e98b1b49e5
+guid: e427428ff6e3f4c46856bfdc3a29be20
 ModelImporter:
   serializedVersion: 24200
   internalIDToNameTable: []
@@ -9,6 +9,11 @@ ModelImporter:
       assembly: UnityEngine.CoreModule
       name: Zahn
     second: {fileID: 2100000, guid: 3afa4b8842a7f1c4894c13a5746e03a7, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Zombie Haut 3
+    second: {fileID: 2100000, guid: f795b6858b9dc0a409dcf866361fdf75, type: 2}
   materials:
     materialImportMode: 2
     materialName: 0

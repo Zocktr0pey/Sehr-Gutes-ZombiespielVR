@@ -1,14 +1,9 @@
 fileFormatVersion: 2
-guid: 5afcd3d9f956d5842afe09e98b1b49e5
+guid: 9a90383cf9d7ecb439bf98b7efeeab78
 ModelImporter:
   serializedVersion: 24200
   internalIDToNameTable: []
-  externalObjects:
-  - first:
-      type: UnityEngine:Material
-      assembly: UnityEngine.CoreModule
-      name: Zahn
-    second: {fileID: 2100000, guid: 3afa4b8842a7f1c4894c13a5746e03a7, type: 2}
+  externalObjects: {}
   materials:
     materialImportMode: 2
     materialName: 0
