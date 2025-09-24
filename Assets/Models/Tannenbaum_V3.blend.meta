@@ -3,7 +3,12 @@ guid: ffdcfb5c40c29924b8762e1785bbfc26
 ModelImporter:
   serializedVersion: 24200
   internalIDToNameTable: []
-  externalObjects: {}
+  externalObjects:
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: "Blattgr\xFCn 1"
+    second: {fileID: 2100000, guid: 1934d563faafb244b94cacd96e0c6210, type: 2}
   materials:
     materialImportMode: 2
     materialName: 0
