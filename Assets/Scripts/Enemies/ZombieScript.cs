@@ -44,6 +44,7 @@ public class ZombieScript : MonoBehaviour
         maxHealth = targetSelf.GetMaxHealth();
 
         onCooldown = false;
+        targetSelf.audioManagerMethod.AddListener(AudioManager.Instance.ZombieDamage);
     }
 
     // Update is called once per frame

@@ -6,7 +6,7 @@ public class Target : MonoBehaviour
     [SerializeField] private bool takesDamage = false;
     [SerializeField] private bool pushable = false;
     [SerializeField] private float maxHealth = 100f;
-    [SerializeField] private UnityEvent audioManagerMethod;
+    [SerializeField] public UnityEvent audioManagerMethod;
     private float currentHealth;
 
     Rigidbody rb;
