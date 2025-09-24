@@ -13,5 +13,5 @@ MonoBehaviour:
   m_Name: EnemySpawnWave
   m_EditorClassIdentifier: Assembly-CSharp::EnemySpawnWave
   amountOfEnemies: 10
-  enemyCommon: {fileID: 3279617770109124476, guid: 7cbda9efdcfe4f94eba8b0d0742f4c69, type: 3}
+  enemyCommon: {fileID: 4089540653493037563, guid: 8d5596be220115944a924163d9092d3e, type: 3}
   spawnRate: 3
