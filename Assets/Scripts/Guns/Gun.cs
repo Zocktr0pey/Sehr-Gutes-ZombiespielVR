@@ -12,7 +12,7 @@ public class Gun : MonoBehaviour
     public bool isFullAuto = false;
 
     // Nur für 3D
-    [SerializeField] private Camera cam;
+    //[SerializeField] private Camera cam;
 
     AudioManager audioManager;
 
@@ -35,6 +35,7 @@ public class Gun : MonoBehaviour
         RaycastHit hit;
 
         // Nur für 3D, Bei VR muss origin und direction von der Waffe statt Kamera kommen
+        /*
         if (Physics.Raycast(cam.transform.position, cam.transform.forward, out hit, range))
         {
             Target target = hit.transform.GetComponent<Target>();
@@ -43,7 +44,18 @@ public class Gun : MonoBehaviour
                 target.Hit(damage, cam.transform.forward, hit.point);
             }
         }
-        
+        */
+
+        // Für VR
+        if (Physics.Raycast(muzzleFlash.transform.position, muzzleFlash.transform.forward, out hit, range))
+        {
+            Target target = hit.transform.GetComponent<Target>();
+            if (target != null)
+            {
+                target.Hit(damage, muzzleFlash.transform.forward, hit.point);
+            }
+        }
+
         currentAmmo--;
     }
     
