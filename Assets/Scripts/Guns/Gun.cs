@@ -15,11 +15,23 @@ public class Gun : MonoBehaviour
     //[SerializeField] private Camera cam;
 
     AudioManager audioManager;
+    LineRenderer laserPointer;
 
     private void Start()
     {
         audioManager = AudioManager.Instance;
+        laserPointer = GetComponent<LineRenderer>();
+
         currentAmmo = maxAmmo;
+        laserPointer.enabled = true;
+    }
+
+    // Update is called once per frame
+    void Update()
+    {
+        Vector3 origin = muzzleFlash.transform.position;
+        laserPointer.SetPosition(0, origin);
+        laserPointer.SetPosition(1, origin + muzzleFlash.transform.forward * range);
     }
 
     public void Shoot()
