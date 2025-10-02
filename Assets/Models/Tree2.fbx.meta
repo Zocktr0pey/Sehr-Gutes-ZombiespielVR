@@ -1,9 +1,19 @@
 fileFormatVersion: 2
-guid: 85906601655682b46a3a1d2e3bcfd350
+guid: 9e1838446f33f55469a8197a4637fb51
 ModelImporter:
   serializedVersion: 24200
   internalIDToNameTable: []
-  externalObjects: {}
+  externalObjects:
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Baumbraun
+    second: {fileID: 2100000, guid: 689f7712042a6a1489a022cbb1dd63d6, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: "Blattgr\xFCn"
+    second: {fileID: 2100000, guid: 6333c959e0297b24cafb0dfd63379c39, type: 2}
   materials:
     materialImportMode: 2
     materialName: 0
