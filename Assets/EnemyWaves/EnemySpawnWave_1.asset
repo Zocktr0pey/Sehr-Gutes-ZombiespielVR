@@ -1,0 +1,19 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 696546acfc0b5b44a9c15e9a2e29915d, type: 3}
+  m_Name: EnemySpawnWave_1
+  m_EditorClassIdentifier: Assembly-CSharp::EnemySpawnWave
+  amountOfEnemies: 10
+  enemyCommon: {fileID: 4089540653493037563, guid: 5343f7012860892459bfa8ce72e56830, type: 3}
+  enemyUncommon: {fileID: 4089540653493037563, guid: 8d5596be220115944a924163d9092d3e, type: 3}
+  enemyRare: {fileID: 4089540653493037563, guid: 68b8c850932c7864c8ae45769fe1fb2e, type: 3}
+  spawnRate: 3

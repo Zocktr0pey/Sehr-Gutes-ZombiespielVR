@@ -11904,6 +11904,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::WaveManager
   enemySpawnWaves:
   - {fileID: 11400000, guid: 92c4edc7770aa7a479cc9f688a247ebb, type: 2}
+  - {fileID: 11400000, guid: 6cfbc3a21702b76409cbefb0ee01d659, type: 2}
+  - {fileID: 11400000, guid: 7cafb114ea0af6b46b020d0e0670d853, type: 2}
+  - {fileID: 11400000, guid: c418de0d88bcae64e8a95ff2b82db6dc, type: 2}
+  - {fileID: 11400000, guid: 21bdf56da80931444a8db5b6295348d0, type: 2}
+  - {fileID: 11400000, guid: 8bf47f3d02a09ab4f98be651a89b937e, type: 2}
   cooldownBetweenWaves: 5
 --- !u!4 &1127800723
 Transform:
