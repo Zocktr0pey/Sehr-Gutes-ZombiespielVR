@@ -1,6 +1,7 @@
 using UnityEditor.Build.Content;
 using UnityEngine;
 using UnityEngine.InputSystem;
+using Unity.XR.CoreUtils;
 
 public class PlayerScript : MonoBehaviour
 {
@@ -11,12 +12,18 @@ public class PlayerScript : MonoBehaviour
     [SerializeField] private float pushForceFactor = 1f;
     [SerializeField] private GameObject currentGun;
 
+    [Header("VR References")]
+    [SerializeField] private XROrigin xrOrigin;
+    // Hauptkamera in XR Origin
+    [SerializeField] private Transform headTransform;
+    // Für die Kollisionen
+    [SerializeField] private LayerMask collisionMask;
+
     private CharacterController controller;
     private InputManager inputManager;
     private AudioManager audioManager;
-    private Vector2 moveInput;
-    private Vector3 velocity;
     private Gun gun;
+    private Vector3 velocity;
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
@@ -27,6 +34,12 @@ public class PlayerScript : MonoBehaviour
 
         // Init stats
         currentHealth = maxHealth;
+
+        if (xrOrigin == null)
+            xrOrigin = FindAnyObjectByType<XROrigin>();
+
+        if (headTransform == null && xrOrigin != null)
+            headTransform = xrOrigin.Camera.transform;
     }
 
     // Update is called once per frame
@@ -34,33 +47,80 @@ public class PlayerScript : MonoBehaviour
     {
         gun = currentGun.GetComponent<Gun>();
 
-        moveInput = inputManager.GetPlayerMovement();
-        Vector3 move = new Vector3(moveInput.x, 0, moveInput.y);
-
-        move = transform.TransformDirection(move);
-
-        controller.Move(moveSpeed * Time.deltaTime * move);
-
-        velocity.y += gravity * Time.deltaTime;
-        controller.Move(velocity * Time.deltaTime);
+        HandleMovement();
+        ApplyGravity();
+        KeepHeadInsideCollider();
 
         // Schiessen!
         // Einzelschuss
         if (gun != null)
         {
-            Gun();
+            GunInput();
+        }
+    }
+    private void HandleMovement()
+    {
+        // Controller Bewegungs-Eingabe
+        Vector2 moveInput = inputManager.GetPlayerMovement();
+        Vector3 move = new Vector3(moveInput.x, 0, moveInput.y);
+
+        if (headTransform != null)
+        {
+            Vector3 forward = headTransform.forward;
+            Vector3 right = headTransform.right;
+            forward.y = 0;
+            right.y = 0;
+            forward.Normalize();
+            right.Normalize();
+
+            // Finale Bewegung
+            move = (forward * move.y + right * move.x);
+        }
+
+        controller.Move(moveSpeed * Time.deltaTime * move);
+    }
+    private void ApplyGravity()
+    {
+        // Bei Bodenkontakt, hat der Spieler geringe Gravität statt 0 (verhindert bouncen/schweben)
+        if (controller.isGrounded && velocity.y < 0)
+            velocity.y = -1f;
+
+        velocity.y += gravity * Time.deltaTime;
+        controller.Move(velocity * Time.deltaTime);
+    }
+
+    private void KeepHeadInsideCollider()
+    {
+        if (headTransform == null)
+            return;
+
+        Vector3 headLocal = transform.InverseTransformPoint(headTransform.position);
+        Vector3 horizontalOffset = new Vector3(headLocal.x, 0, headLocal.z);
+
+        // Bewegt den Körper zur Headset-Bewegung, wenn aus dem Collider
+        if (horizontalOffset.magnitude > controller.radius)
+        {
+            Vector3 correction = transform.TransformVector(horizontalOffset.normalized * (horizontalOffset.magnitude - controller.radius));
+            transform.position += correction;
+        }
+
+        // Drückt Spieler aus Colliders, wenn der Lümmel reinpeakt
+        if (Physics.CheckSphere(headTransform.position, 0.15f, collisionMask))
+        {
+            Vector3 pushBack = (transform.position - headTransform.position).normalized * 0.05f;
+            transform.position += pushBack;
         }
     }
 
     // andere Rigidbodys wegkicken
-    void OnControllerColliderHit(ControllerColliderHit hit)
+    private void OnControllerColliderHit(ControllerColliderHit hit)
     {
         Rigidbody rb = hit.collider.attachedRigidbody;
 
         if (rb != null && !rb.isKinematic)
         {
             Vector3 pushDir = new Vector3(hit.moveDirection.x, 0, hit.moveDirection.z);
-            float pushForce = pushForceFactor * 1/rb.mass;
+            float pushForce = pushForceFactor * (1/rb.mass);
 
             rb.AddForce(pushDir * pushForce, ForceMode.Impulse);
         }
@@ -80,7 +140,7 @@ public class PlayerScript : MonoBehaviour
         }
     }
 
-    void Gun()
+    void GunInput()
     {
         if (inputManager.GetSingleFire() && !gun.isFullAuto)
         {

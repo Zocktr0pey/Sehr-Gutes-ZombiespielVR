@@ -793,8 +793,9 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
-  - {fileID: 1269233258}
   - {fileID: 69324725}
+  - {fileID: 1113218026}
+  - {fileID: 676178725}
   m_Father: {fileID: 2077975408}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &53815571
@@ -10053,13 +10054,13 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 676178724}
   serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 0.15, y: 0.15, z: 0.15}
   m_ConstrainProportionsScale: 1
   m_Children:
   - {fileID: 960838486}
-  m_Father: {fileID: 2077975408}
+  m_Father: {fileID: 53815570}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &676178726
 MonoBehaviour:
@@ -11650,13 +11651,13 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1113218025}
   serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 0.15, y: 0.15, z: 0.15}
   m_ConstrainProportionsScale: 1
   m_Children:
   - {fileID: 668181957}
-  m_Father: {fileID: 2077975408}
+  m_Father: {fileID: 53815570}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &1113218027
 MonoBehaviour:
@@ -12915,7 +12916,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 1
   m_Children: []
-  m_Father: {fileID: 53815570}
+  m_Father: {fileID: 2077975408}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!23 &1269233260
 MeshRenderer:
@@ -17553,8 +17554,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 53815570}
-  - {fileID: 1113218026}
-  - {fileID: 676178725}
+  - {fileID: 1269233258}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &2077975411
@@ -17575,6 +17575,11 @@ MonoBehaviour:
   gravity: -9.81
   pushForceFactor: 1.5
   currentGun: {fileID: 2141691848}
+  xrOrigin: {fileID: 53815572}
+  headTransform: {fileID: 122955222}
+  collisionMask:
+    serializedVersion: 2
+    m_Bits: 1
 --- !u!143 &2077975412
 CharacterController:
   m_ObjectHideFlags: 0
