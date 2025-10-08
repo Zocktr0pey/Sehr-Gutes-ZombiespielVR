@@ -1,6 +1,7 @@
 using UnityEditor.Build.Content;
 using UnityEngine;
 using UnityEngine.InputSystem;
+using UnityEngine.XR.Interaction.Toolkit.Locomotion;
 
 public class PlayerScript : MonoBehaviour
 {
@@ -9,7 +10,10 @@ public class PlayerScript : MonoBehaviour
     [SerializeField] private float moveSpeed = 7f;
     [SerializeField] private float gravity = -9.81f;
     [SerializeField] private float pushForceFactor = 1f;
+    [SerializeField] private float rotationInDegrees = 45;
     [SerializeField] private GameObject currentGun;
+    [SerializeField] private GameObject camera;
+    [SerializeField] private GameObject vrRig;
 
     private CharacterController controller;
     private InputManager inputManager;
@@ -17,6 +21,11 @@ public class PlayerScript : MonoBehaviour
     private Vector2 moveInput;
     private Vector3 velocity;
     private Gun gun;
+
+    // Für rotation mit linken Stick
+    private bool hasSnapped = false;
+    private float snapThreshold = 0.8f;
+    private float snapReset = 0.2f;
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
@@ -34,15 +43,9 @@ public class PlayerScript : MonoBehaviour
     {
         gun = currentGun.GetComponent<Gun>();
 
-        moveInput = inputManager.GetPlayerMovement();
-        Vector3 move = new Vector3(moveInput.x, 0, moveInput.y);
+        Rotation();
 
-        move = transform.TransformDirection(move);
-
-        controller.Move(moveSpeed * Time.deltaTime * move);
-
-        velocity.y += gravity * Time.deltaTime;
-        controller.Move(velocity * Time.deltaTime);
+        Movement();
 
         // Schiessen!
         // Einzelschuss
@@ -50,6 +53,48 @@ public class PlayerScript : MonoBehaviour
         {
             Gun();
         }
+    }
+
+    void Rotation()
+    {
+        Vector2 input = inputManager.GetRightStick();
+        
+        if (!hasSnapped && Mathf.Abs(input.x) > snapThreshold)
+        {
+            Debug.Log("Get past this if " + input);
+            if (input.x < 0)
+            {
+                vrRig.transform.eulerAngles -= new Vector3(0, rotationInDegrees, 0);
+            }
+            else
+            {
+                vrRig.transform.eulerAngles += new Vector3(0, rotationInDegrees, 0);
+            }
+
+            hasSnapped = true;
+            return;
+        }
+
+        if (hasSnapped && input.magnitude < snapReset)
+        {
+            hasSnapped = false;
+        }
+
+    }
+
+    void Movement()
+    {
+        moveInput = inputManager.GetPlayerMovement();
+        Vector3 move = new Vector3(moveInput.x, 0, moveInput.y);
+
+        transform.eulerAngles = new Vector3(0, camera.transform.eulerAngles.y, 0);
+        move = transform.TransformDirection(move);
+        transform.eulerAngles = Vector3.zero;
+
+        controller.Move(moveSpeed * Time.deltaTime * move);
+
+        velocity.y += gravity * Time.deltaTime;
+        controller.Move(velocity * Time.deltaTime);
     }
 
     // andere Rigidbodys wegkicken

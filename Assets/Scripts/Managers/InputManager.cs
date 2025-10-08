@@ -43,6 +43,11 @@ public class InputManager : MonoBehaviour
         return playerControls.Player.Move.ReadValue<Vector2>();
     }
 
+    public Vector2 GetRightStick()
+    {
+        return playerControls.Player.Rotation.ReadValue<Vector2>();
+    }
+
     public Vector2 GetMouseDelta()
     {
         return playerControls.Player.Look.ReadValue<Vector2>();
