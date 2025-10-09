@@ -24,6 +24,10 @@ Material:
   m_SavedProperties:
     serializedVersion: 3
     m_TexEnvs:
+    - _BaseTexture:
+        m_Texture: {fileID: 2800000, guid: 569ac2cac3f29e3489f7ba99108f359a, type: 3}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
     - unity_Lightmaps:
         m_Texture: {fileID: 0}
         m_Scale: {x: 1, y: 1}
@@ -41,7 +45,9 @@ Material:
     - _QueueControl: 0
     - _QueueOffset: 0
     m_Colors:
-    - _BaseColor: {r: 0.35220122, g: 0.17192866, b: 0.10078707, a: 1}
+    - _BaseColor: {r: 0.6830188, g: 0.37902054, b: 0.1791313, a: 1}
+    - _BaseTexture_Tiling: {r: 8, g: 2, b: 0, a: 0}
+    - _Green: {r: 0.13686797, g: 0.4867924, b: 0.094602965, a: 1}
   m_BuildTextureStacks: []
   m_AllowLocking: 1
 --- !u!114 &5102633552023553260
