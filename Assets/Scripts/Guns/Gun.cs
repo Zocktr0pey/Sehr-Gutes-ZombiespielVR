@@ -10,8 +10,9 @@ public class Gun : MonoBehaviour
     [SerializeField] private float range = 150f;
     [SerializeField] private ParticleSystem muzzleFlash;
     public bool isFullAuto = false;
+    public Animator animator;
 
-    // Nur für 3D
+    // Nur fï¿½r 3D
     [SerializeField] private Camera cam;
 
     AudioManager audioManager;
@@ -30,11 +31,13 @@ public class Gun : MonoBehaviour
             return;
         }
 
+        animator.SetTrigger("ShootTrigger");
+
         audioManager.ShootPistol();
         muzzleFlash.Emit(10);
         RaycastHit hit;
 
-        // Nur für 3D, Bei VR muss origin und direction von der Waffe statt Kamera kommen
+        // Nur fï¿½r 3D, Bei VR muss origin und direction von der Waffe statt Kamera kommen
         if (Physics.Raycast(cam.transform.position, cam.transform.forward, out hit, range))
         {
             Target target = hit.transform.GetComponent<Target>();
@@ -51,6 +54,7 @@ public class Gun : MonoBehaviour
     {
         // provisorisch
         currentAmmo = maxAmmo;
+        animator.SetTrigger("ReloadTrigger");
         //audioManager.ReloadPistol
     }
 }
