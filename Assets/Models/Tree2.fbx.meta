@@ -8,12 +8,12 @@ ModelImporter:
       type: UnityEngine:Material
       assembly: UnityEngine.CoreModule
       name: Baumbraun
-    second: {fileID: 2100000, guid: 689f7712042a6a1489a022cbb1dd63d6, type: 2}
+    second: {fileID: 2100000, guid: 946d00454f79cad4694e7f74626af37c, type: 2}
   - first:
       type: UnityEngine:Material
       assembly: UnityEngine.CoreModule
       name: "Blattgr\xFCn"
-    second: {fileID: 2100000, guid: 6333c959e0297b24cafb0dfd63379c39, type: 2}
+    second: {fileID: 2100000, guid: 68649a86fac35aa46a85d332decdd3de, type: 2}
   materials:
     materialImportMode: 2
     materialName: 0
@@ -56,7 +56,7 @@ ModelImporter:
     nodeNameCollisionStrategy: 1
     fileIdsGeneration: 2
     swapUVChannels: 0
-    generateSecondaryUV: 0
+    generateSecondaryUV: 1
     useFileUnits: 1
     keepQuads: 0
     weldVertices: 1
@@ -66,7 +66,7 @@ ModelImporter:
     maxBonesPerVertex: 4
     minBoneWeight: 0.001
     optimizeBones: 1
-    generateMeshLods: 0
+    generateMeshLods: 1
     meshLodGenerationFlags: 0
     maximumMeshLod: -1
     meshOptimizationFlags: -1

@@ -1,6 +1,6 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
---- !u!1001 &7569308228916988918
+--- !u!1001 &1067983564627503102
 PrefabInstance:
   m_ObjectHideFlags: 0
   serializedVersion: 2
@@ -10,15 +10,15 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: -8679921383154817045, guid: 5e87cf901523170419e82cba4c308ada, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 2.789821
+      value: -26.13687
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 5e87cf901523170419e82cba4c308ada, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 0.519
+      value: 0.5135831
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 5e87cf901523170419e82cba4c308ada, type: 3}
       propertyPath: m_LocalPosition.z
-      value: -10.78517
+      value: -17.650833
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 5e87cf901523170419e82cba4c308ada, type: 3}
       propertyPath: m_LocalRotation.w
@@ -48,9 +48,17 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: -7511558181221131132, guid: 5e87cf901523170419e82cba4c308ada, type: 3}
+      propertyPath: m_StaticShadowCaster
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 919132149155446097, guid: 5e87cf901523170419e82cba4c308ada, type: 3}
       propertyPath: m_Name
-      value: george_w 2 (3)
+      value: george_w 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 5e87cf901523170419e82cba4c308ada, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 2147483647
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
