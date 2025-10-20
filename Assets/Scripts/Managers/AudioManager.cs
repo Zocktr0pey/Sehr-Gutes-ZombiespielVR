@@ -1,9 +1,12 @@
+using JetBrains.Annotations;
 using UnityEngine;
 using UnityEngine.Rendering;
 
 public class AudioManager : MonoBehaviour
 {
     private static AudioManager instance;
+
+    [SerializeField] private float startVolume = 0.3f;
 
     [Header("Audio Sources")]
     [SerializeField] private AudioSource sfxSource;
@@ -35,9 +38,10 @@ public class AudioManager : MonoBehaviour
             instance = this;
         }
         
+        SetVolume(startVolume);
     }
 
-    public void UpdateVolume(float newVolume)
+    public void SetVolume(float newVolume)
     {
         sfxSource.volume = newVolume;
         musicSource.volume = newVolume;

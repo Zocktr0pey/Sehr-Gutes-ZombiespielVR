@@ -10,17 +10,28 @@ public class Gun : MonoBehaviour
     [SerializeField] private float range = 150f;
     [SerializeField] private ParticleSystem muzzleFlash;
     public bool isFullAuto = false;
-    public Animator animator;
 
-    // Nur fï¿½r 3D
-    [SerializeField] private Camera cam;
+    // Nur für 3D
+    //[SerializeField] private Camera cam;
 
     AudioManager audioManager;
+    LineRenderer laserPointer;
 
     private void Start()
     {
         audioManager = AudioManager.Instance;
+        laserPointer = GetComponent<LineRenderer>();
+
         currentAmmo = maxAmmo;
+        laserPointer.enabled = true;
+    }
+
+    // Update is called once per frame
+    void Update()
+    {
+        Vector3 origin = muzzleFlash.transform.position;
+        laserPointer.SetPosition(0, origin);
+        laserPointer.SetPosition(1, origin + muzzleFlash.transform.forward * range);
     }
 
     public void Shoot()
@@ -31,13 +42,12 @@ public class Gun : MonoBehaviour
             return;
         }
 
-        animator.SetTrigger("ShootTrigger");
-
         audioManager.ShootPistol();
         muzzleFlash.Emit(10);
         RaycastHit hit;
 
-        // Nur fï¿½r 3D, Bei VR muss origin und direction von der Waffe statt Kamera kommen
+        // Nur für 3D, Bei VR muss origin und direction von der Waffe statt Kamera kommen
+        /*
         if (Physics.Raycast(cam.transform.position, cam.transform.forward, out hit, range))
         {
             Target target = hit.transform.GetComponent<Target>();
@@ -46,7 +56,18 @@ public class Gun : MonoBehaviour
                 target.Hit(damage, cam.transform.forward, hit.point);
             }
         }
-        
+        */
+
+        // Für VR
+        if (Physics.Raycast(muzzleFlash.transform.position, muzzleFlash.transform.forward, out hit, range))
+        {
+            Target target = hit.transform.GetComponent<Target>();
+            if (target != null)
+            {
+                target.Hit(damage, muzzleFlash.transform.forward, hit.point);
+            }
+        }
+
         currentAmmo--;
     }
     
@@ -54,7 +75,6 @@ public class Gun : MonoBehaviour
     {
         // provisorisch
         currentAmmo = maxAmmo;
-        animator.SetTrigger("ReloadTrigger");
         //audioManager.ReloadPistol
     }
 }
