@@ -3,7 +3,32 @@ guid: cf719e21a9194f74e8c45e71fed89f20
 ModelImporter:
   serializedVersion: 24200
   internalIDToNameTable: []
-  externalObjects: {}
+  externalObjects:
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Auge
+    second: {fileID: 2100000, guid: 591c2b27be423db41aebbb4dead5af47, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Augenbraue
+    second: {fileID: 2100000, guid: 75717b3adbffbc74d8e511ba5851eecb, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Knochen
+    second: {fileID: 2100000, guid: f457de30f6d4b4e40845490d2d59d2c8, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Mund
+    second: {fileID: 2100000, guid: 77ffb6a280c394d4d964ccf9ad7497a6, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Zombie Haut
+    second: {fileID: 2100000, guid: 9504632e269cef64aa1ce3fb2124883e, type: 2}
   materials:
     materialImportMode: 2
     materialName: 0
