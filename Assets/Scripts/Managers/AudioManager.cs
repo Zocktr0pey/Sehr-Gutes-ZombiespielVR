@@ -16,6 +16,10 @@ public class AudioManager : MonoBehaviour
     public AudioClip[] playerDamageClips;
     public AudioClip[] zombieDamageClips;
     public AudioClip[] shootPistolClips;
+    public AudioClip[] zombieDeathClips;
+    public AudioClip[] reloadPistolClips;
+    public AudioClip[] playerStepClips;
+    public AudioClip[] zombieIdleClips;
 
     // Erlaubt anderen Klassen auf den Manager zuzugreifen
     public static AudioManager Instance
@@ -26,7 +30,7 @@ public class AudioManager : MonoBehaviour
         }
     }
 
-    // Sorgt dafür das immer nur eine Instanz dieses Managers existiert
+    // Sorgt dafï¿½r das immer nur eine Instanz dieses Managers existiert
     void Awake()
     {
         if (instance != null && instance != this)

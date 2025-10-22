@@ -10036,17 +10036,40 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: edcf2ea88d990874db664c306f8e8062, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::AudioManager
+  startVolume: 0.3
   sfxSource: {fileID: 577492425}
   musicSource: {fileID: 260867163}
   playerDamageClips:
-  - {fileID: 8300000, guid: 3bf609c7221e817419766d8a17ab0b89, type: 3}
-  - {fileID: 8300000, guid: 1170fb722b635fc4aa33c248fe09fbdf, type: 3}
+  - {fileID: 0}
+  - {fileID: 0}
   zombieDamageClips:
-  - {fileID: 8300000, guid: 651951c202858774ca82e57d1d5e2e7c, type: 3}
+  - {fileID: 8300000, guid: a75c7aad50d3adc44a917a1d2b2e2c36, type: 3}
+  - {fileID: 8300000, guid: 3a0a721dd1532a34bb96f210bd416fc8, type: 3}
+  - {fileID: 8300000, guid: dca9ced04cc667449a33e3b00ea9fee6, type: 3}
+  - {fileID: 8300000, guid: 43824eda92f2cb9478d20de4d8d15ea0, type: 3}
   shootPistolClips:
-  - {fileID: 8300000, guid: 0392ada030f835f478242b185c8109f6, type: 3}
-  - {fileID: 8300000, guid: 41a9a9863068df149bf5576b99377f95, type: 3}
-  - {fileID: 8300000, guid: 41a9a9863068df149bf5576b99377f95, type: 3}
+  - {fileID: 8300000, guid: 0712257e427b19d40b7e812734576608, type: 3}
+  - {fileID: 8300000, guid: bdab6c94a6038bb4db085c4387414f6f, type: 3}
+  - {fileID: 8300000, guid: eb42f7fd295357346819ba8f05b67748, type: 3}
+  zombieDeathClips:
+  - {fileID: 8300000, guid: e82c05cd8844f5d4f8b789c397da1c3c, type: 3}
+  - {fileID: 8300000, guid: 7f350a3d9d776714ab48be2cc4d43e67, type: 3}
+  - {fileID: 8300000, guid: 1b3e77a1f35229d43b4716db5a453504, type: 3}
+  reloadPistolClips:
+  - {fileID: 8300000, guid: ca61ebdaead25b94381700eecc9a8016, type: 3}
+  playerStepClips:
+  - {fileID: 8300000, guid: afd5b14453bb3e646b1bf84118e657ae, type: 3}
+  - {fileID: 8300000, guid: 3375475ee805a5640b84701fd035bb10, type: 3}
+  - {fileID: 8300000, guid: 215d315394f6bf748b14eeebaf473681, type: 3}
+  - {fileID: 8300000, guid: a606eccee7abcd449a85d7318e8b173d, type: 3}
+  zombieIdleClips:
+  - {fileID: 8300000, guid: 807663e4a6223d4468fc87fb5872a601, type: 3}
+  - {fileID: 8300000, guid: 39ae86a2ed424b046acb8382bf7eca8a, type: 3}
+  - {fileID: 8300000, guid: 9d6e9c03d91f37c43ad92836499290ed, type: 3}
+  - {fileID: 8300000, guid: f981a1ae61d883741997a304e28743e7, type: 3}
+  - {fileID: 8300000, guid: 61a0fe00fa1da4f4db7160bcb32e1751, type: 3}
+  - {fileID: 8300000, guid: 4cbfbf87dc86f6b4b851b522307ee2bf, type: 3}
+  - {fileID: 8300000, guid: fa08bacfed09d20459411d5332bc94ad, type: 3}
 --- !u!4 &412881217
 Transform:
   m_ObjectHideFlags: 0
@@ -23636,7 +23659,10 @@ MonoBehaviour:
   moveSpeed: 6
   gravity: -9.81
   pushForceFactor: 1.5
+  rotationInDegrees: 45
   currentGun: {fileID: 2141691848}
+  camera: {fileID: 0}
+  vrRig: {fileID: 0}
 --- !u!143 &2077975412
 CharacterController:
   m_ObjectHideFlags: 0
@@ -24404,8 +24430,6 @@ MonoBehaviour:
   range: 150
   muzzleFlash: {fileID: 286099300}
   isFullAuto: 0
-  animator: {fileID: 2141691850}
-  cam: {fileID: 330585545}
 --- !u!95 &2141691850
 Animator:
   serializedVersion: 7
