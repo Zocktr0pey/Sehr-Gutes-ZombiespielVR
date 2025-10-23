@@ -1,3 +1,4 @@
+using System.Reflection;
 using Unity.VisualScripting;
 using UnityEngine;
 
@@ -25,6 +26,7 @@ public class ZombieScript : MonoBehaviour
     private Target targetSelf;
     Vector3 positionDiff;
     Vector3 playerDirection;
+    public Animator animator;
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
@@ -68,7 +70,7 @@ public class ZombieScript : MonoBehaviour
 
         Rotate();
 
-        if (positionDiff.magnitude > attackRange) // Zombie bewegt sich nur wenn der Spieler außerhalb der damageRange ist
+        if (positionDiff.magnitude > attackRange) // Zombie bewegt sich nur wenn der Spieler auï¿½erhalb der damageRange ist
         {
             Move();
         }
@@ -82,7 +84,7 @@ public class ZombieScript : MonoBehaviour
 
     private void Move()
     {
-        // Forwärtsbewegung
+        // Forwï¿½rtsbewegung
         Vector3 move = transform.forward * moveSpeed * Time.deltaTime;
         rb.MovePosition(rb.position + move);
     }
@@ -102,7 +104,7 @@ public class ZombieScript : MonoBehaviour
 
     private void Rotate()
     {
-        // Richtungsvektor zum Spieler außer y damit er sich nur um die Y - Achse dreht
+        // Richtungsvektor zum Spieler auï¿½er y damit er sich nur um die Y - Achse dreht
         playerDirection = positionDiff;
         playerDirection.y = 0;
         playerDirection = playerDirection.normalized;
@@ -121,8 +123,8 @@ public class ZombieScript : MonoBehaviour
     private void Death()
     {
         // audioManager.ZombieDeath();
-        // TodesAnimation
-        // Geld oder Punkt für den Spieler
+        animator.SetTrigger("DeathTrigger");
+        // Geld oder Punkt fï¿½r den Spieler
         // Zombiecount--
         Destroy(this.gameObject);
     }
