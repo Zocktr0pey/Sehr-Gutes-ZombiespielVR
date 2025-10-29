@@ -43,7 +43,7 @@ public class Gun : MonoBehaviour
             return;
         }
 
-        animator.SetTrigger("ShootTrigger");
+        //animator.SetTrigger("ShootTrigger");
         audioManager.ShootPistol();
         muzzleFlash.Emit(10);
         RaycastHit hit;
