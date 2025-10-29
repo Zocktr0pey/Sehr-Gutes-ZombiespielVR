@@ -277,6 +277,10 @@ PrefabInstance:
       propertyPath: m_LocalPosition.y
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 6279257015455600152, guid: d712355dd0a9f184c828917638d6c4eb, type: 3}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 7741479129436230833, guid: d712355dd0a9f184c828917638d6c4eb, type: 3}
       propertyPath: 'm_Materials.Array.data[0]'
       value: 
@@ -285,10 +289,14 @@ PrefabInstance:
       propertyPath: m_Enabled
       value: 0
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 6279257015455600152, guid: d712355dd0a9f184c828917638d6c4eb, type: 3}
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 6367327175002158045, guid: d712355dd0a9f184c828917638d6c4eb, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 644761581}
   m_SourcePrefab: {fileID: 100100000, guid: d712355dd0a9f184c828917638d6c4eb, type: 3}
 --- !u!1 &551273563
 GameObject:
@@ -402,6 +410,25 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &644761577 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 6367327175002158045, guid: d712355dd0a9f184c828917638d6c4eb, type: 3}
+  m_PrefabInstance: {fileID: 191578775}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &644761581
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 644761577}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 171e7ae092cb1144ea8ec88694ceee32, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::MenuGunScript
+  range: 150
+  muzzleFlash: {fileID: 1551755983}
 --- !u!1 &871090861
 GameObject:
   m_ObjectHideFlags: 0
@@ -446,6 +473,8 @@ GameObject:
   - component: {fileID: 872306740}
   - component: {fileID: 872306739}
   - component: {fileID: 872306738}
+  - component: {fileID: 872306742}
+  - component: {fileID: 872306741}
   m_Layer: 0
   m_Name: Button
   m_TagString: Untagged
@@ -555,6 +584,56 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 872306736}
   m_CullTransparentMesh: 1
+--- !u!114 &872306741
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 872306736}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 48e651f7ac3ba49498b0fe4d02aee9c2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::ButtonTarget
+  pushable: 1
+  pushed: 0
+  onPressed:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 11500000, guid: eaf989cbb447b764e9c375619d52122d, type: 3}
+        m_TargetAssemblyTypeName: UnityEditor.MonoScript, UnityEditor.CoreModule
+        m_MethodName: set_name
+        m_Mode: 5
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: StartButton
+          m_BoolArgument: 0
+        m_CallState: 2
+--- !u!65 &872306742
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 872306736}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Size: {x: 160, y: 30, z: 0.1}
+  m_Center: {x: 0, y: 0, z: -0.1}
 --- !u!1 &1012483830
 GameObject:
   m_ObjectHideFlags: 0
@@ -995,6 +1074,11 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!198 &1551755983 stripped
+ParticleSystem:
+  m_CorrespondingSourceObject: {fileID: 4702886424585461075, guid: d712355dd0a9f184c828917638d6c4eb, type: 3}
+  m_PrefabInstance: {fileID: 191578775}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1584643033
 GameObject:
   m_ObjectHideFlags: 0
