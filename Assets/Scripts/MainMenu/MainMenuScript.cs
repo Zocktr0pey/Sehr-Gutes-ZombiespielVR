@@ -1,3 +1,4 @@
+using System;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
@@ -17,6 +18,7 @@ public class MainMenuScript : MonoBehaviour
 
     void StartButton()
     {
+        Debug.Log("Button pressed");
         // Startet Spiel-Szene
         SceneManager.LoadScene("Game");
     }
