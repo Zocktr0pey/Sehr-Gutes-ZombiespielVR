@@ -20,6 +20,7 @@ public class AudioManager : MonoBehaviour
     public AudioClip[] zombieIdleClips;
     public AudioClip[] shootPistolClips;
     public AudioClip[] reloadPistolClips;
+    public AudioClip[] emptyPistolClips;
 
     // Erlaubt anderen Klassen auf den Manager zuzugreifen
     public static AudioManager Instance
@@ -111,6 +112,15 @@ public class AudioManager : MonoBehaviour
         if (len > 0)
         {
             sfxSource.PlayOneShot(reloadPistolClips[Random.Range(0, len)]);
+        }
+    }
+
+    public void EmptyPistol()
+    {
+        int len = emptyPistolClips.Length;
+        if (len > 0)
+        {
+            sfxSource.PlayOneShot(emptyPistolClips[Random.Range(0, len)]);
         }
     }
 }
