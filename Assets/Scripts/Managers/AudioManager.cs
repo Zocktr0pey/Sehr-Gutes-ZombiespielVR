@@ -14,12 +14,12 @@ public class AudioManager : MonoBehaviour
 
     [Header("Sound Clips")]
     public AudioClip[] playerDamageClips;
-    public AudioClip[] zombieDamageClips;
-    public AudioClip[] shootPistolClips;
-    public AudioClip[] zombieDeathClips;
-    public AudioClip[] reloadPistolClips;
     public AudioClip[] playerStepClips;
+    public AudioClip[] zombieDamageClips;
+    public AudioClip[] zombieDeathClips;
     public AudioClip[] zombieIdleClips;
+    public AudioClip[] shootPistolClips;
+    public AudioClip[] reloadPistolClips;
 
     // Erlaubt anderen Klassen auf den Manager zuzugreifen
     public static AudioManager Instance
@@ -54,9 +54,18 @@ public class AudioManager : MonoBehaviour
     public void PlayerDamage()
     {
         int len = playerDamageClips.Length;
+        if (len > 0)
+        {
+            sfxSource.PlayOneShot(playerDamageClips[Random.Range(0, len)]);
+        }
+    }
+    
+    public void PlayerStep()
+    {
+        int len = playerStepClips.Length;
         if (len > 0 )
         {
-           sfxSource.PlayOneShot(playerDamageClips[Random.Range( 0, len )]);
+           sfxSource.PlayOneShot(playerStepClips[Random.Range( 0, len )]);
         }
     }
 
@@ -69,12 +78,39 @@ public class AudioManager : MonoBehaviour
         }
     }
 
+    public void ZombieDeath()
+    {
+        int len = zombieDeathClips.Length;
+        if (len > 0)
+        {
+            sfxSource.PlayOneShot(zombieDeathClips[Random.Range(0, len)]);
+        }
+    }
+
+    public void ZombieIdle()
+    {
+        int len = zombieIdleClips.Length;
+        if (len > 0)
+        {
+            sfxSource.PlayOneShot(zombieIdleClips[Random.Range(0, len)]);
+        }
+    }
+
     public void ShootPistol()
     {
         int len = shootPistolClips.Length;
         if (len > 0)
         {
             sfxSource.PlayOneShot(shootPistolClips[Random.Range(0, len)]);
+        }
+    }
+
+    public void ReloadPistol()
+    {
+        int len = reloadPistolClips.Length;
+        if (len > 0)
+        {
+            sfxSource.PlayOneShot(reloadPistolClips[Random.Range(0, len)]);
         }
     }
 }
