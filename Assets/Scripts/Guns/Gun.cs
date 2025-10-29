@@ -16,7 +16,7 @@ public class Gun : MonoBehaviour
 
     AudioManager audioManager;
     LineRenderer laserPointer;
-    public Animator animator;
+    private Animator animator;
 
     private void Start()
     {
@@ -25,6 +25,8 @@ public class Gun : MonoBehaviour
 
         currentAmmo = maxAmmo;
         laserPointer.enabled = true;
+
+        animator = GetComponent<Animator>();
     }
 
     // Update is called once per frame
@@ -43,7 +45,7 @@ public class Gun : MonoBehaviour
             return;
         }
 
-        //animator.SetTrigger("ShootTrigger");
+        animator.SetTrigger("ShootTrigger");
         audioManager.ShootPistol();
         muzzleFlash.Emit(10);
         RaycastHit hit;
