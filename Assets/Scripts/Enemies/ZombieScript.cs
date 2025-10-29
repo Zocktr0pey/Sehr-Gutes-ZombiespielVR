@@ -19,6 +19,7 @@ public class ZombieScript : MonoBehaviour
     private float attackCooldown = 2f;
     private float timeSinceLastAttack;
     private bool onCooldown;
+    private Animator animator;
 
     private GameObject player;
     private PlayerScript playerScript;
@@ -26,7 +27,7 @@ public class ZombieScript : MonoBehaviour
     private Target targetSelf;
     Vector3 positionDiff;
     Vector3 playerDirection;
-    public Animator animator;
+    
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
@@ -47,6 +48,9 @@ public class ZombieScript : MonoBehaviour
 
         onCooldown = false;
         targetSelf.audioManagerMethod.AddListener(AudioManager.Instance.ZombieDamage);
+
+        //animator = GetComponent<Animator>();
+        //animator.applyRootMotion = false;
     }
 
     // Update is called once per frame
@@ -123,7 +127,7 @@ public class ZombieScript : MonoBehaviour
     private void Death()
     {
         // audioManager.ZombieDeath();
-        animator.SetTrigger("DeathTrigger");
+        // animator.SetTrigger("DeathTrigger");
         // Geld oder Punkt f�r den Spieler
         // Zombiecount--
         Destroy(this.gameObject);
