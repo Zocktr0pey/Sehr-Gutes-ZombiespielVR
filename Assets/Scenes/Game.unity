@@ -5065,8 +5065,7 @@ MonoBehaviour:
   sfxSource: {fileID: 577492425}
   musicSource: {fileID: 260867163}
   playerDamageClips:
-  - {fileID: 0}
-  - {fileID: 0}
+  - {fileID: 8300000, guid: 343716a056566df479cea2ae9c8dc243, type: 3}
   playerStepClips:
   - {fileID: 8300000, guid: afd5b14453bb3e646b1bf84118e657ae, type: 3}
   - {fileID: 8300000, guid: 3375475ee805a5640b84701fd035bb10, type: 3}
