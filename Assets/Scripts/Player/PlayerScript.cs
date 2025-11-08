@@ -21,8 +21,12 @@ public class PlayerScript : MonoBehaviour
     private Vector2 moveInput;
     private Vector3 velocity;
     private Gun gun;
+    public Transform leftHand;
+    public Transform rightHand;
+    public float reloadDistance = 0.00015f;
+    private bool canReload = true;
 
-    // Für rotation mit linken Stick
+    // Fï¿½r rotation mit linken Stick
     private bool hasSnapped = false;
     private float snapThreshold = 0.8f;
     private float snapReset = 0.2f;
@@ -47,11 +51,18 @@ public class PlayerScript : MonoBehaviour
 
         Movement();
 
+        float handDist = Vector3.Distance(leftHand.position, rightHand.position);
+
+        if (handDist > reloadDistance)
+        {
+            canReload = true;
+        }
+
         // Schiessen!
         // Einzelschuss
         if (gun != null)
         {
-            Gun();
+            Gun(handDist);
         }
     }
 
@@ -117,7 +128,7 @@ public class PlayerScript : MonoBehaviour
         currentHealth -= damage;
         audioManager.PlayerDamage();
 
-        // Bestatter schaut drüber
+        // Bestatter schaut drï¿½ber
         if (currentHealth <= 0)
         {
             //audioManager.PlayerDeath()
@@ -125,7 +136,7 @@ public class PlayerScript : MonoBehaviour
         }
     }
 
-    void Gun()
+    void Gun(float handDist)
     {
         if (inputManager.GetSingleFire() && !gun.isFullAuto)
         {
@@ -138,9 +149,11 @@ public class PlayerScript : MonoBehaviour
             gun.Shoot();
         }
 
-        if (inputManager.GetReload())
+        // if (inputManager.GetReload())
+        if (handDist < reloadDistance && canReload)
         {
             gun.Reload();
+            canReload = false;
         }
     }
 }
