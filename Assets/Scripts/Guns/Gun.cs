@@ -11,6 +11,8 @@ public class Gun : MonoBehaviour
     [SerializeField] private ParticleSystem muzzleFlash;
     public bool isFullAuto = false;
 
+    public GameObject BloodHit;
+
     // Nur f�r 3D
     //[SerializeField] private Camera cam;
 
@@ -68,7 +70,9 @@ public class Gun : MonoBehaviour
             Target target = hit.transform.GetComponent<Target>();
             if (target != null)
             {
+                Instantiate(BloodHit, hit.point, Quaternion.LookRotation(hit.normal));
                 target.Hit(damage, muzzleFlash.transform.forward, hit.point);
+                // Destroy(effectInstance, 1f);
             }
         }
 

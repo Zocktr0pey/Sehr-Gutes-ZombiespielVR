@@ -10394,6 +10394,10 @@ PrefabInstance:
       propertyPath: m_LocalPosition.y
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 6279257015455600152, guid: d712355dd0a9f184c828917638d6c4eb, type: 3}
+      propertyPath: BloodHit
+      value: 
+      objectReference: {fileID: 9180706252680798644, guid: 3843c9393576a564ca486846a65f246f, type: 3}
     - target: {fileID: 7741479129436230833, guid: d712355dd0a9f184c828917638d6c4eb, type: 3}
       propertyPath: 'm_Materials.Array.data[0]'
       value: 
