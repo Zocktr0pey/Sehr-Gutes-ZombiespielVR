@@ -78,6 +78,11 @@ public class Gun : MonoBehaviour
 
         currentAmmo--;
     }
+
+    public bool AmmoIsFull()
+    {
+        return currentAmmo == maxAmmo;
+    }
     
     public void Reload()
     {

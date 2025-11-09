@@ -12,6 +12,7 @@ public class PlayerScript : MonoBehaviour
     [SerializeField] private GameObject currentGun;
     [SerializeField] private GameObject camera;
     [SerializeField] private GameObject vrRig;
+<<<<<<< Updated upstream
     public Transform leftHand;
     public Transform rightHand;
     public float reloadDistance = 0.1f;
@@ -20,6 +21,9 @@ public class PlayerScript : MonoBehaviour
     public TextMeshProUGUI scoreText;
     public TextMeshProUGUI lifeText;
 
+=======
+    [SerializeField] private GameObject magazine;
+>>>>>>> Stashed changes
 
     private CharacterController controller;
     private InputManager inputManager;
@@ -27,6 +31,13 @@ public class PlayerScript : MonoBehaviour
     private Vector2 moveInput;
     private Vector3 velocity;
     private Gun gun;
+<<<<<<< Updated upstream
+=======
+    public Transform leftHand;
+    public Transform rightHand;
+    public float reloadDistance = 0.18f;
+    public float magazineDistance = 0.6f;
+>>>>>>> Stashed changes
     private bool canReload = true;
     private int currentWave = 0;
 
@@ -72,9 +83,10 @@ public class PlayerScript : MonoBehaviour
 
         float handDist = Vector3.Distance(leftHand.position, rightHand.position);
 
-        if (handDist > reloadDistance)
+        if (handDist > magazineDistance)
         {
             canReload = true;
+            magazine.SetActive(true);
         }
 
         // Schiessen!
@@ -170,12 +182,11 @@ public class PlayerScript : MonoBehaviour
             gun.Shoot();
         }
 
-        // if (inputManager.GetReload())
-        Debug.Log(handDist + " " + reloadDistance + " " + canReload);
-        if (handDist < reloadDistance && canReload)
+        if (handDist < reloadDistance && canReload && !gun.AmmoIsFull())
         {
             gun.Reload();
             canReload = false;
+            magazine.SetActive(false);
         }
     }
 
