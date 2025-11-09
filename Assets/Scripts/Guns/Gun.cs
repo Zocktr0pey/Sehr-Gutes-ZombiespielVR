@@ -23,10 +23,8 @@ public class Gun : MonoBehaviour
     private void Start()
     {
         audioManager = AudioManager.Instance;
-        laserPointer = GetComponent<LineRenderer>();
 
         currentAmmo = maxAmmo;
-        laserPointer.enabled = true;
 
         animator = GetComponent<Animator>();
     }
@@ -35,8 +33,6 @@ public class Gun : MonoBehaviour
     void Update()
     {
         Vector3 origin = muzzleFlash.transform.position;
-        laserPointer.SetPosition(0, origin);
-        laserPointer.SetPosition(1, origin + muzzleFlash.transform.forward * range);
     }
 
     public void Shoot()
