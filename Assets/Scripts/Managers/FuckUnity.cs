@@ -24,11 +24,8 @@ public class FuckUnity : MonoBehaviour
 
     // Wenn Spieler stirbt aufrufen
     public void GameOver(int wave, int score)
-
+    {
         //In GlobalValues speichern für Hauptmenü
-        GlobalValues.SetLastScore(score);
-        GlobalValues.SetLastWave(currentWave);
-
         SceneManager.LoadScene("MainMenu");
     }
 }
