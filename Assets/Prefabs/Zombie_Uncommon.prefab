@@ -49,10 +49,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cdb7ad6f69e90ce4994064958f00d3e2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::ZombieScript
-  maxHealth: 100
-  moveSpeed: 4
-  rotationSpeed: 4
-  damage: 10
+  maxHealth: 150
+  moveSpeed: 2
+  rotationSpeed: 2
+  damage: 6
   attackRange: 1.5
   attackCooldown: 2
 --- !u!54 &5278621612798116979

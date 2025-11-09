@@ -52,7 +52,7 @@ MonoBehaviour:
   maxHealth: 100
   moveSpeed: 3
   rotationSpeed: 3
-  damage: 10
+  damage: 6
   attackRange: 1.5
   attackCooldown: 2
 --- !u!54 &5278621612798116979

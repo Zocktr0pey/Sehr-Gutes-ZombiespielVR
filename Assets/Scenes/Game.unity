@@ -10813,7 +10813,7 @@ MonoBehaviour:
   - {fileID: 11400000, guid: b54ed05e7158ad748bb0dc22ef7e36a0, type: 2}
   - {fileID: 11400000, guid: 0dfbd774f3392c441a77c677bc5fa945, type: 2}
   - {fileID: 11400000, guid: 912fd312066ad4e4fb061067cdaa485b, type: 2}
-  cooldownBetweenWaves: 5
+  cooldownBetweenWaves: 10
 --- !u!4 &1127800723
 Transform:
   m_ObjectHideFlags: 0
