@@ -27,6 +27,7 @@ public class PlayerScript : MonoBehaviour
     private CharacterController controller;
     private InputManager inputManager;
     private AudioManager audioManager;
+    private FuckUnity fuckUnity;
     private Vector2 moveInput;
     private Vector3 velocity;
     private Gun gun;
@@ -48,6 +49,7 @@ public class PlayerScript : MonoBehaviour
         controller = GetComponent<CharacterController>();
         inputManager = InputManager.Instance;
         audioManager = AudioManager.Instance;
+        fuckUnity = FuckUnity.Instance;
 
         // Init stats
         currentHealth = maxHealth;
