@@ -157,9 +157,16 @@ public class PlayerScript : MonoBehaviour
         // Bestatter schaut dr�ber
         if (currentHealth <= 0)
         {
+            Death();
             //audioManager.PlayerDeath()
             //gameManager.GameOver();
         }
+    }
+    private void Death()
+    {
+        //Nochmal, vllt. klingts nett
+        audioManager.PlayerDamage();
+        fuckUnity.GameOver(currentWave, score);
     }
 
     void Gun(float handDist)
