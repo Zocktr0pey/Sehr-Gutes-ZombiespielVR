@@ -10248,6 +10248,10 @@ PrefabInstance:
       propertyPath: rightHand
       value: 
       objectReference: {fileID: 934547256}
+    - target: {fileID: 2328074989004085543, guid: d712355dd0a9f184c828917638d6c4eb, type: 3}
+      propertyPath: reloadDistance
+      value: 0.15
+      objectReference: {fileID: 0}
     - target: {fileID: 2720562572150479364, guid: d712355dd0a9f184c828917638d6c4eb, type: 3}
       propertyPath: m_LocalPosition.y
       value: 0

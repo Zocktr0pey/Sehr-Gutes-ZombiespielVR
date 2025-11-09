@@ -20,7 +20,7 @@ public class PlayerScript : MonoBehaviour
     private Gun gun;
     public Transform leftHand;
     public Transform rightHand;
-    public float reloadDistance = 0.00015f;
+    public float reloadDistance = 0.1f;
     private bool canReload = true;
 
     // F�r rotation mit linken Stick
@@ -69,7 +69,6 @@ public class PlayerScript : MonoBehaviour
         
         if (!hasSnapped && Mathf.Abs(input.x) > snapThreshold)
         {
-            Debug.Log("Get past this if " + input);
             if (input.x < 0)
             {
                 vrRig.transform.eulerAngles -= new Vector3(0, rotationInDegrees, 0);
@@ -147,6 +146,7 @@ public class PlayerScript : MonoBehaviour
         }
 
         // if (inputManager.GetReload())
+        Debug.Log(handDist + " " + reloadDistance + " " + canReload);
         if (handDist < reloadDistance && canReload)
         {
             gun.Reload();
