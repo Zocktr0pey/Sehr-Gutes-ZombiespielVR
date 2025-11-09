@@ -178,7 +178,6 @@ public class PlayerScript : MonoBehaviour
         if (inputManager.GetSingleFire() && !gun.isFullAuto)
         {
             gun.Shoot();
-            Debug.Log("Score: "+this.score);
         }
 
         // Dauerfeuer (wird bei JEDEM Frame getriggert)

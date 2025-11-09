@@ -1,5 +1,6 @@
 using System.Collections;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class WaveManager : MonoBehaviour
 {
@@ -56,7 +57,7 @@ public class WaveManager : MonoBehaviour
             // Alle Wellen besiegt
             if (currentEnemyWaveIndex >= enemySpawnWaves.Length)
             {
-                Debug.Log("You won... but to which prize? You now have Zombie-Aids...");
+                SceneManager.LoadScene("MainMenu");
                 return;
             }
 
@@ -74,7 +75,6 @@ public class WaveManager : MonoBehaviour
         yield return new WaitForSeconds(cooldownBetweenWaves);
 
         // startet nächste Gegnerwelle
-        Debug.Log($"Starting wave {currentEnemyWaveIndex + 1}!");
         _spawnManager.SpawnWave(currentEnemyWave);
 
         currentEnemyWaveIndex++;
