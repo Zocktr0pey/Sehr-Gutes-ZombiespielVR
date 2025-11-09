@@ -27,7 +27,7 @@ public class PlayerScript : MonoBehaviour
     private CharacterController controller;
     private InputManager inputManager;
     private AudioManager audioManager;
-    private FuckUnity fuckUnity;
+    private GameManager gameManager;
     private Vector2 moveInput;
     private Vector3 velocity;
     private Gun gun;
@@ -49,7 +49,7 @@ public class PlayerScript : MonoBehaviour
         controller = GetComponent<CharacterController>();
         inputManager = InputManager.Instance;
         audioManager = AudioManager.Instance;
-        fuckUnity = FuckUnity.Instance;
+        gameManager = GameManager.Instance;
 
         // Init stats
         currentHealth = maxHealth;
@@ -70,7 +70,10 @@ public class PlayerScript : MonoBehaviour
             waveText.text = $"Wave: {this.currentWave}";
         }
 
-        gun = currentGun.GetComponent<Gun>();
+        if (currentGun != null)
+        {
+            gun = currentGun.GetComponent<Gun>();
+        }
 
         Rotation();
         Movement();
@@ -157,16 +160,15 @@ public class PlayerScript : MonoBehaviour
         // Bestatter schaut dr�ber
         if (currentHealth <= 0)
         {
+            Debug.Log("Spieler ist Tod");
             Death();
-            //audioManager.PlayerDeath()
-            //gameManager.GameOver();
         }
     }
     private void Death()
     {
         //Nochmal, vllt. klingts nett
         audioManager.PlayerDamage();
-        fuckUnity.GameOver(currentWave, score);
+        gameManager.GameOver(currentWave, score);
     }
 
     void Gun(float handDist)
