@@ -43,7 +43,7 @@ public class Gun : MonoBehaviour
     {
         if (currentAmmo == 0)
         {
-            //audioManager.EmptyPistol()
+            audioManager.EmptyPistol();
             return;
         }
 
@@ -70,9 +70,11 @@ public class Gun : MonoBehaviour
             Target target = hit.transform.GetComponent<Target>();
             if (target != null)
             {
-                Instantiate(BloodHit, hit.point, Quaternion.LookRotation(hit.normal));
+                if (target.GetTakesDamage())
+                {
+                    Instantiate(BloodHit, hit.point, Quaternion.LookRotation(hit.normal));
+                }
                 target.Hit(damage, muzzleFlash.transform.forward, hit.point);
-                // Destroy(effectInstance, 1f);
             }
         }
 
