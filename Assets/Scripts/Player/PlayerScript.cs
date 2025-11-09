@@ -1,9 +1,10 @@
+using TMPro;
 using UnityEngine;
 
 public class PlayerScript : MonoBehaviour
 {
     [SerializeField] private float maxHealth = 30f;
-    [SerializeField] private float currentHealth;
+    [SerializeField] private float currentHealth = 30f;
     [SerializeField] private float moveSpeed = 7f;
     [SerializeField] private float gravity = -9.81f;
     [SerializeField] private float pushForceFactor = 1f;
@@ -11,6 +12,14 @@ public class PlayerScript : MonoBehaviour
     [SerializeField] private GameObject currentGun;
     [SerializeField] private GameObject camera;
     [SerializeField] private GameObject vrRig;
+    public Transform leftHand;
+    public Transform rightHand;
+    public float reloadDistance = 0.1f;
+    [Header("UI")]
+    public TextMeshProUGUI waveText;
+    public TextMeshProUGUI scoreText;
+    public TextMeshProUGUI lifeText;
+
 
     private CharacterController controller;
     private InputManager inputManager;
@@ -18,10 +27,12 @@ public class PlayerScript : MonoBehaviour
     private Vector2 moveInput;
     private Vector3 velocity;
     private Gun gun;
-    public Transform leftHand;
-    public Transform rightHand;
-    public float reloadDistance = 0.1f;
     private bool canReload = true;
+    private int currentWave = 0;
+
+
+    // Punktzahl fur toten von Zombies
+    private int score = 0;
 
     // F�r rotation mit linken Stick
     private bool hasSnapped = false;
@@ -37,15 +48,26 @@ public class PlayerScript : MonoBehaviour
 
         // Init stats
         currentHealth = maxHealth;
+
+        // Init UI
+        scoreText.text = $"Score: {this.score}";
+        waveText.text = $"Wave: FUCK FUCKING FUCK UNITY";
+        lifeText.text = $"Life: {this.currentHealth}/{this.maxHealth}";
+
     }
 
     // Update is called once per frame
     void Update()
     {
+        if (this.currentWave != WaveManager.Instance.GetCurrentWave())
+        {
+            this.currentWave = WaveManager.Instance.GetCurrentWave();
+            waveText.text = $"Wave: {this.currentWave}";
+        }
+
         gun = currentGun.GetComponent<Gun>();
 
         Rotation();
-
         Movement();
 
         float handDist = Vector3.Distance(leftHand.position, rightHand.position);
@@ -121,8 +143,10 @@ public class PlayerScript : MonoBehaviour
     // Spieler bekommt Schaden (durch Zombie in der Regel)
     public void TakeDamage(float damage) 
     { 
-        currentHealth -= damage;
+        this.currentHealth -= damage;
         audioManager.PlayerDamage();
+
+        lifeText.text = $"Life: {this.currentHealth}/{this.maxHealth}";
 
         // Bestatter schaut dr�ber
         if (currentHealth <= 0)
@@ -137,6 +161,7 @@ public class PlayerScript : MonoBehaviour
         if (inputManager.GetSingleFire() && !gun.isFullAuto)
         {
             gun.Shoot();
+            Debug.Log("Score: "+this.score);
         }
 
         // Dauerfeuer (wird bei JEDEM Frame getriggert)
@@ -152,5 +177,16 @@ public class PlayerScript : MonoBehaviour
             gun.Reload();
             canReload = false;
         }
+    }
+
+    // Gibt aktuelle Punktzahl zuruck
+    public int GetScore()
+    {
+        return this.score;
+    }
+    public void IncreaseScore()
+    {
+        this.score++;
+        scoreText.text = $"Score: {this.score}";
     }
 }

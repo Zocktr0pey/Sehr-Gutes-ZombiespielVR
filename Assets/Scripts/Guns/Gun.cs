@@ -82,9 +82,9 @@ public class Gun : MonoBehaviour
     public void Reload()
     {
         // provisorisch
-        Debug.Log("Waffe nachgeladen!");
         currentAmmo = maxAmmo;
         audioManager.ReloadPistol();
+        Debug.Log("Waffe nachgeladen!");
     }
 }
 

@@ -91,4 +91,9 @@ public class WaveManager : MonoBehaviour
     {
         aliveEnemiesCount--;
     }
+
+    public int GetCurrentWave()
+    {
+        return this.currentEnemyWaveIndex;
+    }
 }

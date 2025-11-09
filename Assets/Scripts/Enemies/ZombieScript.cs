@@ -138,6 +138,12 @@ public class ZombieScript : MonoBehaviour
 
     private void Death()
     {
+        playerScript.IncreaseScore();
+        // audioManager.ZombieDeath();
+        // animator.SetTrigger("DeathTrigger");
+        // Geld oder Punkt f�r den Spieler
+        // Zombiecount--
+        Destroy(this.gameObject);
         if (isDying) return;
         isDying = true;
 
