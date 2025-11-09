@@ -28,8 +28,16 @@ public class FileManager : MonoBehaviour
 
         // Define file path (works across all platforms)
         filePath = Path.Combine(Application.persistentDataPath, "score.txt");
-        highScore.GetComponent<TMP_Text>().text = "Highscore: " + ReadScore();
+        int score = ReadScore();
 
+        if (score >= 180)
+        {
+            highScore.GetComponent<TMP_Text>().text = "Highscore: 180 You Won!";
+        }
+        else
+        {
+            highScore.GetComponent<TMP_Text>().text = "Highscore: " + ReadScore();
+        }
     }
 
     public int ReadScore()
