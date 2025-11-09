@@ -71,7 +71,7 @@ public class WaveManager : MonoBehaviour
     {
         currentEnemyWave = enemySpawnWaves[currentEnemyWaveIndex];
         // Cooldown 5s
-        yield return new WaitForSeconds(5f);
+        yield return new WaitForSeconds(cooldownBetweenWaves);
 
         // startet nächste Gegnerwelle
         Debug.Log($"Starting wave {currentEnemyWaveIndex + 1}!");
