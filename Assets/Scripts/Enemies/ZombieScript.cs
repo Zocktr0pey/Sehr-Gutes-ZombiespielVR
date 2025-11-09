@@ -1,4 +1,5 @@
 using System.Reflection;
+using System.Collections; // neu
 using Unity.VisualScripting;
 using UnityEngine;
 
@@ -27,6 +28,8 @@ public class ZombieScript : MonoBehaviour
     private Target targetSelf;
     Vector3 positionDiff;
     Vector3 playerDirection;
+    AudioManager audioManager;
+    private bool isDying = false;
     
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
@@ -44,6 +47,14 @@ public class ZombieScript : MonoBehaviour
         playerScript = player.GetComponent<PlayerScript>();
         rb = GetComponent<Rigidbody>();
 
+        // assign audio manager (singleton or find)
+        audioManager = AudioManager.Instance ?? FindObjectOfType<AudioManager>();
+        if (audioManager == null) Debug.LogWarning("AudioManager not found. Add AudioManager to the scene or assign it.");
+
+        // assign animator
+        animator = GetComponent<Animator>();
+        if (animator == null) Debug.LogWarning("Animator not found on Zombie. Add Animator component or remove animator usages.");
+
         maxHealth = targetSelf.GetMaxHealth();
 
         onCooldown = false;
@@ -56,6 +67,7 @@ public class ZombieScript : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        if (isDying) return;
         // Health update and isAlive check
         currentHealth = targetSelf.GetHealth();
         if (currentHealth <= 0 )
@@ -126,10 +138,50 @@ public class ZombieScript : MonoBehaviour
 
     private void Death()
     {
-        // audioManager.ZombieDeath();
-        // animator.SetTrigger("DeathTrigger");
-        // Geld oder Punkt f�r den Spieler
-        // Zombiecount--
-        Destroy(this.gameObject);
+        if (isDying) return;
+        isDying = true;
+
+        // Sound
+        audioManager.ZombieDeath();
+
+        // Trigger death animation
+        animator.SetTrigger("DeathTrigger");
+
+        // Deaktiviere Kollisions- / Bewegungs-Effekte
+        Collider col = GetComponent<Collider>();
+        if (col != null) col.enabled = false;
+        if (rb != null) rb.isKinematic = true;
+
+        // Warte auf das Ende der Death-Animation und zerstöre dann das Objekt
+        StartCoroutine(PlayDeathAndDestroy());
+    }
+
+    private IEnumerator PlayDeathAndDestroy()
+    {
+        float waitTime = 1f;
+
+        // if (animator != null)
+        // {
+        //     // Suche eine Animation mit "death" im Namen oder benutze die aktuelle State-Länge
+        //     var ac = animator.runtimeAnimatorController;
+        //     if (ac != null)
+        //     {
+        //         foreach (var clip in ac.animationClips)
+        //         {
+        //             if (clip.name.ToLower().Contains("death"))
+        //             {
+        //                 waitTime = clip.length;
+        //                 break;
+        //             }
+        //         }
+        //     }
+
+        //     // fallback: versuche die aktuelle State-Länge (kann 0 sein)
+        //     var stateInfo = animator.GetCurrentAnimatorStateInfo(0);
+        //     if (stateInfo.length > 0) waitTime = Mathf.Max(waitTime, stateInfo.length);
+        // }
+
+        yield return new WaitForSeconds(waitTime);
+        Destroy(gameObject);
     }
 }
