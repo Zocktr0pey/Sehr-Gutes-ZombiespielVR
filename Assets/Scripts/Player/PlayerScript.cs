@@ -56,7 +56,7 @@ public class PlayerScript : MonoBehaviour
 
         // Init UI
         scoreText.text = $"Score: {this.score}";
-        waveText.text = $"Wave: FUCK FUCKING FUCK UNITY";
+        waveText.text = $"Wave: {this.currentWave}";
         lifeText.text = $"Life: {this.currentHealth}/{this.maxHealth}";
 
     }
