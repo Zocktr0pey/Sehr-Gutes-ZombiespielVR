@@ -10,10 +10,10 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 696546acfc0b5b44a9c15e9a2e29915d, type: 3}
-  m_Name: EnemySpawnWave_4
+  m_Name: EnemySpawnWave_10
   m_EditorClassIdentifier: Assembly-CSharp::EnemySpawnWave
-  amountOfEnemies: 20
+  amountOfEnemies: 30
   enemyCommon: {fileID: 4089540653493037563, guid: 5343f7012860892459bfa8ce72e56830, type: 3}
   enemyUncommon: {fileID: 4089540653493037563, guid: 8d5596be220115944a924163d9092d3e, type: 3}
   enemyRare: {fileID: 4089540653493037563, guid: 68b8c850932c7864c8ae45769fe1fb2e, type: 3}
-  spawnRate: 3
+  spawnRate: 1
