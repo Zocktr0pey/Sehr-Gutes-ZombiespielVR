@@ -12,18 +12,17 @@ public class PlayerScript : MonoBehaviour
     [SerializeField] private GameObject currentGun;
     [SerializeField] private GameObject camera;
     [SerializeField] private GameObject vrRig;
-<<<<<<< Updated upstream
+    [SerializeField] private GameObject magazine;
+
     public Transform leftHand;
     public Transform rightHand;
-    public float reloadDistance = 0.1f;
+    public float reloadDistance = 0.18f;
+    public float magazineDistance = 0.6f;
     [Header("UI")]
     public TextMeshProUGUI waveText;
     public TextMeshProUGUI scoreText;
     public TextMeshProUGUI lifeText;
-
-=======
-    [SerializeField] private GameObject magazine;
->>>>>>> Stashed changes
+    
 
     private CharacterController controller;
     private InputManager inputManager;
@@ -31,13 +30,6 @@ public class PlayerScript : MonoBehaviour
     private Vector2 moveInput;
     private Vector3 velocity;
     private Gun gun;
-<<<<<<< Updated upstream
-=======
-    public Transform leftHand;
-    public Transform rightHand;
-    public float reloadDistance = 0.18f;
-    public float magazineDistance = 0.6f;
->>>>>>> Stashed changes
     private bool canReload = true;
     private int currentWave = 0;
 

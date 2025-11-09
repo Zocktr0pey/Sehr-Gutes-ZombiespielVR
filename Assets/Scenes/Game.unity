@@ -10277,19 +10277,17 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 492972618}
     - target: {fileID: 2328074989004085543, guid: d712355dd0a9f184c828917638d6c4eb, type: 3}
-<<<<<<< Updated upstream
       propertyPath: lifeText
       value: 
       objectReference: {fileID: 664334589}
     - target: {fileID: 2328074989004085543, guid: d712355dd0a9f184c828917638d6c4eb, type: 3}
-      propertyPath: waveText
-      value: 
-      objectReference: {fileID: 81151162}
-=======
       propertyPath: magazine
       value: 
       objectReference: {fileID: 327557012}
->>>>>>> Stashed changes
+    - target: {fileID: 2328074989004085543, guid: d712355dd0a9f184c828917638d6c4eb, type: 3}
+      propertyPath: waveText
+      value: 
+      objectReference: {fileID: 81151162}
     - target: {fileID: 2328074989004085543, guid: d712355dd0a9f184c828917638d6c4eb, type: 3}
       propertyPath: rightHand
       value: 
@@ -10333,15 +10331,12 @@ PrefabInstance:
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects:
-<<<<<<< Updated upstream
     - targetCorrespondingSourceObject: {fileID: 3030974968433310105, guid: d712355dd0a9f184c828917638d6c4eb, type: 3}
       insertIndex: -1
       addedObject: {fileID: 1630326070}
-=======
     - targetCorrespondingSourceObject: {fileID: 8231264087320714809, guid: d712355dd0a9f184c828917638d6c4eb, type: 3}
       insertIndex: -1
       addedObject: {fileID: 1433339416}
->>>>>>> Stashed changes
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: d712355dd0a9f184c828917638d6c4eb, type: 3}
 --- !u!4 &1064352349 stripped
