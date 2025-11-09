@@ -13,6 +13,7 @@ public class PlayerScript : MonoBehaviour
     [SerializeField] private GameObject camera;
     [SerializeField] private GameObject vrRig;
     [SerializeField] private GameObject magazine;
+    [SerializeField] private FileManager fileManager;
 
     public Transform leftHand;
     public Transform rightHand;
@@ -168,7 +169,8 @@ public class PlayerScript : MonoBehaviour
     {
         //Nochmal, vllt. klingts nett
         audioManager.PlayerDamage();
-        gameManager.GameOver(currentWave, score);
+        fileManager.WriteScore(score);
+        gameManager.GameOver();
     }
 
     void Gun(float handDist)

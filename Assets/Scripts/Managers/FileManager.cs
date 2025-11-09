@@ -1,10 +1,12 @@
 using System;
 using System.IO;
 using UnityEngine;
-using UnityEngine.SceneManagement;
+using TMPro;
 
 public class FileManager : MonoBehaviour
 {
+    [SerializeField] GameObject highScore;
+
     public static FileManager instance;
     public static FileManager Instance
     {
@@ -26,6 +28,8 @@ public class FileManager : MonoBehaviour
 
         // Define file path (works across all platforms)
         filePath = Path.Combine(Application.persistentDataPath, "score.txt");
+        highScore.GetComponent<TMP_Text>().text = "Highscore: " + ReadScore();
+
     }
 
     public int ReadScore()
