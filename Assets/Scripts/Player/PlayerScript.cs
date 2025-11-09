@@ -1,7 +1,4 @@
-using UnityEditor.Build.Content;
 using UnityEngine;
-using UnityEngine.InputSystem;
-using UnityEngine.XR.Interaction.Toolkit.Locomotion;
 
 public class PlayerScript : MonoBehaviour
 {
