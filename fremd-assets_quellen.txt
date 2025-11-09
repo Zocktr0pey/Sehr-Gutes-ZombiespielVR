@@ -1,2 +1,4 @@
 Free Trees:
 https://assetstore.unity.com/packages/3d/vegetation/trees/free-trees-103208#content
+Skybox:
+https://assetstore.unity.com/packages/2d/textures-materials/sky/10-skyboxes-pack-day-night-32236
